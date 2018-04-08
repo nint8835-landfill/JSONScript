@@ -5,10 +5,9 @@
       "name": "double",
       "code": [
         {
-          "operation": "set",
+          "operation": "return",
           "args": {
-            "name": "RETVAL",
-            "new_value": {
+            "return_value": {
               "operation": "add",
               "args": {
                 "left": {
