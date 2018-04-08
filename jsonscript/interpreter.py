@@ -17,9 +17,13 @@ class Interpreter(object):
         Registers all JSON to Python proxy methods
         """
         self.proxy_methods["set"] = self.set_value
+        self.proxy_methods["return"] = self.return_value
+
         self.proxy_methods["add"] = self.add
         self.proxy_methods["subtract"] = self.subtract
-        self.proxy_methods["return"] = self.return_value
+        self.proxy_methods["multiply"] = self.multiply
+        self.proxy_methods["divide"] = self.divide
+
 
     def run_file(self, path: str) -> None:
         """
@@ -55,18 +59,18 @@ class Interpreter(object):
     def set_value(self, args) -> None:
         """
         Sets a variable to a given value
-        :param name: The name of the variable to set
-        :param value: The new value
         """
         self.variables[args["name"]] = self.process_value(args["value"], args)
 
     def return_value(self, args):
+        """
+        Returns a certain value
+        """
         return self.process_value(args["return_value"], args)
 
     def add(self, args):
         """
         Adds two values together
-        :return: The result of adding the two values
         """
         left = self.process_value(args["left"], args)
         right = self.process_value(args["right"], args)
@@ -75,11 +79,26 @@ class Interpreter(object):
     def subtract(self, args):
         """
         Subtracts one value from another
-        :return: The result of subtracting the two values
         """
         left = self.process_value(args["left"], args)
         right = self.process_value(args["right"], args)
         return left - right
+
+    def multiply(self, args):
+        """
+        Multiplies two values
+        """
+        left = self.process_value(args["left"], args)
+        right = self.process_value(args["right"], args)
+        return left * right
+
+    def divide(self, args):
+        """
+        Divides two values
+        """
+        left = self.process_value(args["left"], args)
+        right = self.process_value(args["right"], args)
+        return left / right
 
     def execute_statements(self, statements: Union[list, object], arguments=None) -> None:
         """
