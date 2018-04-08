@@ -5,23 +5,18 @@
       "name": "double",
       "code": [
         {
-          "operation": "return",
+          "operation": "add",
           "args": {
-            "return_value": {
-              "operation": "add",
+            "left": {
+              "operation": "getarg",
               "args": {
-                "left": {
-                  "operation": "getarg",
-                  "args": {
-                    "name": "value"
-                  }
-                },
-                "right": {
-                  "operation": "getarg",
-                  "args": {
-                    "name": "value"
-                  }
-                }
+                "name": "value"
+              }
+            },
+            "right": {
+              "operation": "getarg",
+              "args": {
+                "name": "value"
               }
             }
           }
