@@ -18,12 +18,22 @@ class Interpreter(object):
         """
         self.proxy_methods["set"] = self.set_value
         self.proxy_methods["return"] = self.return_value
+        self.proxy_methods["import"] = self.import_file
 
         self.proxy_methods["add"] = self.add
         self.proxy_methods["subtract"] = self.subtract
         self.proxy_methods["multiply"] = self.multiply
         self.proxy_methods["divide"] = self.divide
 
+    def run(self, path: str) -> None:
+        """
+        Runs a program from a path. Can be either a file or a URL
+        :param path: The path to run the program from
+        """
+        if path.startswith("http://") or path.startswith("https://"):
+            self.run_url(path)
+        else:
+            self.run_file(path)
 
     def run_file(self, path: str) -> None:
         """
@@ -99,6 +109,12 @@ class Interpreter(object):
         left = self.process_value(args["left"], args)
         right = self.process_value(args["right"], args)
         return left / right
+
+    def import_file(self, args):
+        """
+        Executes a file to import all methods and variables defined within it
+        """
+        self.run(args["path"])
 
     def execute_statements(self, statements: Union[list, object], arguments=None) -> None:
         """
