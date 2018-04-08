@@ -1,0 +1,20 @@
+[
+  {
+    "operation": "define",
+    "args": {
+      "name": "test",
+      "code": [
+        {
+          "operation": "set",
+          "args": {
+            "name": "RETVAL",
+            "value": 5
+          }
+        }
+      ]
+    }
+  },
+  {
+    "operation": "test"
+  }
+]
