@@ -2,19 +2,38 @@
   {
     "operation": "define",
     "args": {
-      "name": "test",
+      "name": "double",
       "code": [
         {
           "operation": "set",
           "args": {
             "name": "RETVAL",
-            "value": 5
+            "new_value": {
+              "operation": "add",
+              "args": {
+                "left": {
+                  "operation": "getarg",
+                  "args": {
+                    "name": "value"
+                  }
+                },
+                "right": {
+                  "operation": "getarg",
+                  "args": {
+                    "name": "value"
+                  }
+                }
+              }
+            }
           }
         }
       ]
     }
   },
   {
-    "operation": "test"
+    "operation": "double",
+    "args": {
+      "value": 5
+    }
   }
 ]
